@@ -1,69 +1,77 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2015 k.takushima.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package jp.ne.ocn.gold.katsumit.chapt2;
 
 import java.math.BigInteger;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author k.takushima
  */
-public class GCDTrialDivisionTest {
-    
-    @Test(expected=IllegalArgumentException.class)
+public class GCDEuclidianTest {
+
+    @Test(expected = IllegalArgumentException.class)
     public void 入力aが負の数の場合例外発生() {
-     // Setup
+        // Setup
         BigInteger a = BigInteger.valueOf(-1l);
         BigInteger b = BigInteger.TEN;
         BigInteger expected = BigInteger.ZERO;
-     // Exercise
-        GCDTrialDivision sut = new GCDTrialDivision();
+        // Exercise
+        GCDEuclidian sut = new GCDEuclidian();
         BigInteger actual = sut.gcd(a, b);
-     // Verify
+        // Verify
         fail();
         assertThat(actual, is(expected));
-     // TearDown
+        // TearDown
     }
-    
-    @Test(expected=IllegalArgumentException.class)
+
+    @Test(expected = IllegalArgumentException.class)
     public void 入力bが負の数の場合例外発生() {
-     // Setup
+        // Setup
         BigInteger a = BigInteger.TEN;
         BigInteger b = BigInteger.valueOf(-1l);
         BigInteger expected = BigInteger.ZERO;
-     // Exercise
-        GCDTrialDivision sut = new GCDTrialDivision();
+        // Exercise
+        GCDEuclidian sut = new GCDEuclidian();
         BigInteger actual = sut.gcd(a, b);
-     // Verify
+        // Verify
         fail();
         assertThat(actual, is(expected));
-     // TearDown
+        // TearDown
     }
     
     @Test
     public void 入力aが780入力bが660の場合は最大公約数60() {
-     // Setup
+        // Setup
         BigInteger a = BigInteger.valueOf(780l);
         BigInteger b = BigInteger.valueOf(660l);
         BigInteger expected = BigInteger.valueOf(60l);
-     // Exercise
-        GCDTrialDivision sut = new GCDTrialDivision();
+        // Exercise
+        GCDEuclidian sut = new GCDEuclidian();
         BigInteger actual = sut.gcd(a, b);
-     // Verify
+        // Verify
         assertThat(actual, is(expected));
-     // TearDown
+        // TearDown
     }
-    
     @Test
     public void 入力がそこそこ巨大な場合() {
-     // Setup
+        // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
                 .multiply(BigInteger.valueOf(3l).pow(51))
                 .multiply(BigInteger.valueOf(5l).pow(76));
@@ -73,19 +81,20 @@ public class GCDTrialDivisionTest {
         BigInteger expected = BigInteger.valueOf(2l).pow(32)
                 .multiply(BigInteger.valueOf(3l).pow(51))
                 .multiply(BigInteger.valueOf(5l).pow(74));
-     // Exercise
-        GCDTrialDivision sut = new GCDTrialDivision();
+        // Exercise
+        GCDEuclidian sut = new GCDEuclidian();
         BigInteger actual = sut.gcd(a, b);
-     // Verify
+        // Verify
         assertThat(actual, is(expected));
-     // TearDown
+        // TearDown
     }
-    
+
     // TODO 10秒以上かかったらOKとしたいけどIgnoreで。
+    // パフォーマンス的には試行割り算法と同じみたいなので一旦スキップ。
     // @Ignore
-    // @Test(timeout=10000, expected=Exception.class)
+    //@Test
     public void 入力がとてつもなく巨大な場合計算に10秒以上かかる() throws Exception {
-     // Setup
+        // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
                 .multiply(BigInteger.valueOf(3l).pow(51))
                 .multiply(BigInteger.valueOf(5l).pow(76));
@@ -99,16 +108,14 @@ public class GCDTrialDivisionTest {
                 .multiply(BigInteger.valueOf(11l).pow(29))
                 .multiply(BigInteger.valueOf(13l).pow(49))
                 ;
-                
-        
-     // Exercise
+
+        // Exercise
         GCDTrialDivision sut = new GCDTrialDivision();
             BigInteger actual = sut.gcd(a, b);
-            assertThat(actual, is(expected));
 
-    // Verify
-        fail();
-     // TearDown
+        // Verify
+            assertThat(actual, is(expected));
+        // TearDown
     }
-    
+
 }
