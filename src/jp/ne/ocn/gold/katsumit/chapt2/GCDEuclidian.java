@@ -23,7 +23,8 @@ package jp.ne.ocn.gold.katsumit.chapt2;
 import java.math.BigInteger;
 
 /**
- * 最大公約数を求めるアルゴリズム ユークリッドの互除法
+ * 最大公約数を求めるアルゴリズム
+ * ユークリッドの互除法
  *
  * @author k.takushima
  */

@@ -24,8 +24,8 @@ import static org.junit.Assert.*;
  *
  * @author k.takushima
  */
-public class GCDEuclidianTest {
-
+public class GCDBinaryEucridTest {
+    
     @Test(expected = IllegalArgumentException.class)
     public void 入力aが負の数の場合例外発生() {
         // Setup
@@ -33,14 +33,13 @@ public class GCDEuclidianTest {
         BigInteger b = BigInteger.TEN;
         BigInteger expected = BigInteger.ZERO;
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         // Verify
         fail();
         assertThat(actual, is(expected));
         // TearDown
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void 入力bが負の数の場合例外発生() {
         // Setup
@@ -48,7 +47,7 @@ public class GCDEuclidianTest {
         BigInteger b = BigInteger.valueOf(-1l);
         BigInteger expected = BigInteger.ZERO;
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         // Verify
         fail();
@@ -63,7 +62,7 @@ public class GCDEuclidianTest {
         BigInteger b = BigInteger.valueOf(660l);
         BigInteger expected = BigInteger.valueOf(60l);
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         // Verify
         assertThat(actual, is(expected));
@@ -77,7 +76,7 @@ public class GCDEuclidianTest {
         BigInteger b = BigInteger.valueOf(44461l);
         BigInteger expected = BigInteger.valueOf(173l);
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         // Verify
         assertThat(actual, is(expected));
@@ -97,7 +96,7 @@ public class GCDEuclidianTest {
                 .multiply(BigInteger.valueOf(3l).pow(51))
                 .multiply(BigInteger.valueOf(5l).pow(74));
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         // Verify
         assertThat(actual, is(expected));
@@ -107,7 +106,7 @@ public class GCDEuclidianTest {
     // TODO 10秒以上かかったらOKとしたいけどIgnoreで。
     // パフォーマンス的には試行割り算法と同じみたいなので一旦スキップ。
     // @Ignore
-    //@Test
+    @Test
     public void 入力がとてつもなく巨大な場合計算に10秒以上かかる() throws Exception {
         // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
@@ -123,7 +122,7 @@ public class GCDEuclidianTest {
                 .multiply(BigInteger.valueOf(11l).pow(29))
                 .multiply(BigInteger.valueOf(13l).pow(49));
         // Exercise
-        GCDEuclidian sut = new GCDEuclidian();
+        GCDBinaryEucrid sut = new GCDBinaryEucrid();
         BigInteger actual = sut.gcd(a, b);
         System.out.println("a:" + a);
         System.out.println("b:" + b);
@@ -131,6 +130,9 @@ public class GCDEuclidianTest {
         System.out.println(expected);
         System.out.println("actual:");
         System.out.println(actual);
+        System.out.println("Calc by BigInteger:");
+        System.out.println(a.gcd(b));
+        System.out.println(b.gcd(a));
         // Verify
         assertThat(actual, is(expected));
         // TearDown
