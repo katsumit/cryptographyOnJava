@@ -107,7 +107,7 @@ public class GCDEuclidianTest {
     // TODO 10秒以上かかったらOKとしたいけどIgnoreで。
     // パフォーマンス的には試行割り算法と同じみたいなので一旦スキップ。
     // @Ignore
-    //@Test
+    @Test
     public void 入力がとてつもなく巨大な場合計算に10秒以上かかる() throws Exception {
         // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
@@ -116,21 +116,12 @@ public class GCDEuclidianTest {
         BigInteger b = BigInteger.valueOf(7l).pow(25)
                 .multiply(BigInteger.valueOf(11l).pow(29))
                 .multiply(BigInteger.valueOf(13l).pow(49));
-        BigInteger expected = BigInteger.valueOf(2l).pow(35)
-                .multiply(BigInteger.valueOf(3l).pow(51))
-                .multiply(BigInteger.valueOf(5l).pow(76))
-                .multiply(BigInteger.valueOf(7l).pow(25))
-                .multiply(BigInteger.valueOf(11l).pow(29))
-                .multiply(BigInteger.valueOf(13l).pow(49));
+            // a, bは互いに素
+        BigInteger expected = BigInteger.ONE;
         // Exercise
         GCDEuclidian sut = new GCDEuclidian();
         BigInteger actual = sut.gcd(a, b);
-        System.out.println("a:" + a);
-        System.out.println("b:" + b);
-        System.out.println("expected:");
-        System.out.println(expected);
-        System.out.println("actual:");
-        System.out.println(actual);
+
         // Verify
         assertThat(actual, is(expected));
         // TearDown
