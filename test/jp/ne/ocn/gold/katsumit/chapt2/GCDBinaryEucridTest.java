@@ -103,11 +103,8 @@ public class GCDBinaryEucridTest {
         // TearDown
     }
 
-    // TODO 10秒以上かかったらOKとしたいけどIgnoreで。
-    // パフォーマンス的には試行割り算法と同じみたいなので一旦スキップ。
-    // @Ignore
     @Test
-    public void 入力がとてつもなく巨大な場合計算に10秒以上かかる() throws Exception {
+    public void 入力がとてつもなく巨大な場合() throws Exception {
         // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
                 .multiply(BigInteger.valueOf(3l).pow(51))
