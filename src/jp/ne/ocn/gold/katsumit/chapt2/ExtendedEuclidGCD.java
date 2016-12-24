@@ -25,6 +25,13 @@ import java.math.BigInteger;
  */
 public class ExtendedEuclidGCD {
 
+    private BigInteger x;
+    
+    private BigInteger y;
+    
+    private BigInteger gcd;
+    
+    
      /**
      * 
      * [STEP 1]<br>
@@ -45,7 +52,65 @@ public class ExtendedEuclidGCD {
      * @return gcd(a, b)
      */
     public BigInteger gcd(BigInteger a, BigInteger b) {
-        throw new IllegalArgumentException();
+        if(a.compareTo(BigInteger.ZERO) < 0
+                || b.compareTo(BigInteger.ZERO) < 0) {
+            throw new IllegalArgumentException();
+        }
+        // [STEP1]
+        BigInteger xPrev = BigInteger.ONE;
+        BigInteger yPrev = BigInteger.ZERO;
+        BigInteger x = BigInteger.ZERO;
+        BigInteger y = BigInteger.ONE;
+        
+        BigInteger rPrev = a.compareTo(b) >= 0 ? a: b;
+        BigInteger r = a.compareTo(b) < 0 ? a: b;
+      
+        
+        while(!r.equals(BigInteger.ZERO)) {
+            // [STEP2-1]
+            BigInteger qNext = rPrev.divide(r);
+            BigInteger rNext = rPrev.remainder(r);
+            // [STEP2-2]
+            BigInteger xNext = xPrev.subtract(qNext.multiply(x));
+            
+            BigInteger yNext = yPrev.subtract(qNext.multiply(y));
+            
+            // [STEP2]
+            xPrev = x;
+            x = xNext;
+            yPrev = y;
+            y = yNext;
+            rPrev = r;
+            r = rNext;
+        }
+        
+        //[STEP3]
+        this.x = xPrev;
+        this.y = yPrev;
+        this.gcd = rPrev;
+        
+        return getGcd();
+    }
+
+    /**
+     * @return the x
+     */
+    public BigInteger getX() {
+        return x;
+    }
+
+    /**
+     * @return the y
+     */
+    public BigInteger getY() {
+        return y;
+    }
+
+    /**
+     * @return the gcd
+     */
+    public BigInteger getGcd() {
+        return gcd;
     }
     
 }

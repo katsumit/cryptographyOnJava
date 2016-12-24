@@ -56,4 +56,30 @@ public class ExtendEuclidGCDTest {
         // TearDown
     }
 
+    @Test
+    public void 入力aが2793入力bが828の場合は最大公約数3() {
+        // Setup
+        BigInteger a = BigInteger.valueOf(2793l);
+        BigInteger b = BigInteger.valueOf(828l);
+        BigInteger expected = BigInteger.valueOf(3l);
+        // Exercise
+        ExtendedEuclidGCD sut = new ExtendedEuclidGCD();
+        BigInteger actual = sut.gcd(a, b);
+        // Verify
+        assertThat(actual, is(expected));
+        // TearDown
+    }    
+    @Test
+    public void 入力aが828入力bが2793の場合は最大公約数3() {
+        // Setup
+        BigInteger a = BigInteger.valueOf(828l);
+        BigInteger b = BigInteger.valueOf(2793l);
+        BigInteger expected = BigInteger.valueOf(3l);
+        // Exercise
+        ExtendedEuclidGCD sut = new ExtendedEuclidGCD();
+        BigInteger actual = sut.gcd(a, b);
+        // Verify
+        assertThat(actual, is(expected));
+        // TearDown
+    }    
 }

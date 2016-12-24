@@ -97,8 +97,8 @@ public class GCDTrialDivisionTest {
     }
 
     // TODO 10秒以上かかったらOKとしたいけどIgnoreで。
-    @Ignore
-    @Test(timeout=10000, expected=Exception.class)
+    //@Ignore
+    @Test(expected=Exception.class, timeout=1000)
     public void 入力がとてつもなく巨大な場合計算に10秒以上かかる() throws Exception {
         // Setup
         BigInteger a = BigInteger.valueOf(2l).pow(35)
